@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Register</title>
+</head>
+<body>
+
+
+<div id="registerBox">
+    <h2>Register</h2>
+
+    <input type="text" id="user-name" placeholder="Username..">
+    <input type="text" id="user-email" placeholder="Email..">
+    <input type="text" id="user-password" placeholder="Password..">
+
+
+
+        <ul id="avatarPicker">
+            <li class="avatar active">
+                <img src="images/avatars/one.png">
+            </li>
+            <li class="avatar">
+                <img src="images/avatars/two.png">
+            </li>
+            <li class="avatar">
+                <img src="images/avatars/three.png">
+            </li>
+            <li class="avatar">
+                <img src="images/avatars/four.png">
+            </li>
+            <li class="avatar">
+                <img src="images/avatars/five.png">
+            </li>
+        </ul>
+
+    <button id="registerButton">Get Started</button>
+
+    <p>Already have an account? <a href="index.html">Login</a></p>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+<script src="scripts/initialize.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="scripts/register.js"></script>
+</body>
+</html>
