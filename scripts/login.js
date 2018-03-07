@@ -9,6 +9,10 @@ $(document).ready(function() {
 
             $("#loginButton").click(function () {
                 // Store Login Details
+
+                document.getElementById("loader").style.display="block";
+                document.getElementById("loginBox").style.display="none";
+
                 let loginEmail = $("#login-email").val();
                 let loginPassword = $("#login-password").val();
 
