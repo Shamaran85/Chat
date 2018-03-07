@@ -27,9 +27,6 @@ $(document).ready(function() {
                     photoURL: userAvatar
                 });
             })
-            .then(function () {
-                window.location = 'index.html';
-            })
             .catch(function (error) {
                 alert(error.message);
             });
