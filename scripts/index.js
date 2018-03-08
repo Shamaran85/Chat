@@ -193,7 +193,7 @@ $(document).ready(function() {
 
 
     const shit = database.ref().child("/loggedin");
-    shit.once('child_added', function(data) {
+    shit.on('child_added', function(data) {
         $('ul#usersStatus').append('<li>' + data.val() + '</li>');
     });
 
