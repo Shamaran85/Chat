@@ -161,7 +161,6 @@ $(document).ready(function() {
         $mainUserName.html(user.displayName);
     }
 
-
     // Users Online
 
     const onlineUsers = database.ref().child("loggedin/");
@@ -171,9 +170,8 @@ $(document).ready(function() {
 
     onlineUsers.on('child_removed', function(data) {
         $("." + data.val()).remove();
-        console.log(data.val());
     });
 
 
 
-}); // Document Ready
+});
