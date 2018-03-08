@@ -158,6 +158,11 @@ body {
     color: #434651;
     font-weight: bold;
 }
+
+.userNameSelf {
+    color: #0576b9;
+}
+
 .timeStamp {
     color: #a8aab1;
     padding-left: 6px;

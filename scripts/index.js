@@ -35,6 +35,7 @@ $(document).ready(function() {
             $loginContainer.hide();
             $chatContainer.show();
             showUserInfo();
+            database.ref('/loggedin').child(user.uid).set(user.displayName);
         } else {
             // User is NOT signed in.
             $loginContainer.show();
@@ -45,6 +46,8 @@ $(document).ready(function() {
 
     // Logout user.
     $logoutButton.click(function () {
+        let user = auth.currentUser;
+        database.ref('/loggedin').child(user.uid).remove();
         firebase.auth().signOut().then(function () {
             window.location = 'index.html';
         }).catch(function (error) {
@@ -131,14 +134,26 @@ $(document).ready(function() {
        const socialDB = database.ref().child("chatroom/socialChat");
        const workDB = database.ref().child("chatroom/workChat");
 
+
        generalDB.on('child_added', function(data) {
-           $generalChat.append('<div class="chatMsgContainer">' +
-               '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
-               '<span class="uerName">' + data.val().name + '</span>' +
-               '<span class="timeStamp">' + data.val().timestamp + '</span>' +
-               '<p class="chatMessage">' + data.val().message + '</p>' +
-               '</div>');
-           scrollToBottom();
+           let user = auth.currentUser;
+           if (data.val().uid === user.uid) {
+               $generalChat.append('<div class="chatMsgContainer">' +
+                   '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
+                   '<span class="userNameSelf">' + data.val().name + '</span>' +
+                   '<span class="timeStamp">' + data.val().timestamp + '</span>' +
+                   '<p class="chatMessage">' + data.val().message + '</p>' +
+                   '</div>');
+               scrollToBottom();
+           } else {
+               $generalChat.append('<div class="chatMsgContainer">' +
+                   '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
+                   '<span class="userName">' + data.val().name + '</span>' +
+                   '<span class="timeStamp">' + data.val().timestamp + '</span>' +
+                   '<p class="chatMessage">' + data.val().message + '</p>' +
+                   '</div>');
+               scrollToBottom();
+           }
        });
 
        socialDB.on('child_added', function(data) {
@@ -174,6 +189,24 @@ $(document).ready(function() {
         $mainAvatar.html('<img src="' + user.photoURL + '"></div>');
         $mainUserName.html(user.displayName);
     }
+
+
+
+    const shit = database.ref().child("/loggedin");
+    shit.once('child_added', function(data) {
+        $('ul#usersStatus').append('<li>' + data.val() + '</li>');
+    });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
