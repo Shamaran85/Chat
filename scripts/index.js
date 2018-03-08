@@ -19,12 +19,7 @@ $(document).ready(function() {
     let $chatRooms = $('ul#chatRooms li');
     let $chatroomContent = $('.chatRoom-content');
     let $logoutButton = $('#logout-button');
-    let $loginButton = $('#login-button');
-    let $loginEmail = $('#login-email');
-    let $loginPassword = $('#login-password');
-    let $loginContainer = $('#login-container');
     let $chatContainer = $('#chat-container');
-
 
 
 
@@ -32,35 +27,23 @@ $(document).ready(function() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
-            $loginContainer.hide();
             $chatContainer.show();
             showUserInfo();
-            database.ref('/loggedin').child(user.uid).set(user.displayName);
+            database.ref('loggedin/').child(user.uid).set(user.displayName);
         } else {
             // User is NOT signed in.
-            $loginContainer.show();
             $chatContainer.hide();
+            window.location.href = "login.html";
         }
     });
-
 
     // Logout user.
     $logoutButton.click(function () {
         let user = auth.currentUser;
-        database.ref('/loggedin').child(user.uid).remove();
+        database.ref('loggedin/').child(user.uid).remove();
         firebase.auth().signOut().then(function () {
-            window.location = 'index.html';
+            window.location = 'login.html';
         }).catch(function (error) {
-            alert(error.message);
-        });
-    });
-
-
-    // Login user.
-    $loginButton.click(function () {
-        let loginEmail = $loginEmail.val();
-        let loginPassword = $loginPassword.val();
-        firebase.auth().signInWithEmailAndPassword(loginEmail, loginPassword).catch(function (error) {
             alert(error.message);
         });
     });
@@ -87,8 +70,6 @@ $(document).ready(function() {
         // Scroll to bottom of Chat.
         scrollToBottom();
     });
-
-
 
 
     // Write to the active chatrooms database.
@@ -136,16 +117,6 @@ $(document).ready(function() {
 
 
        generalDB.on('child_added', function(data) {
-           let user = auth.currentUser;
-           if (data.val().uid === user.uid) {
-               $generalChat.append('<div class="chatMsgContainer">' +
-                   '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
-                   '<span class="userNameSelf">' + data.val().name + '</span>' +
-                   '<span class="timeStamp">' + data.val().timestamp + '</span>' +
-                   '<p class="chatMessage">' + data.val().message + '</p>' +
-                   '</div>');
-               scrollToBottom();
-           } else {
                $generalChat.append('<div class="chatMsgContainer">' +
                    '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
                    '<span class="userName">' + data.val().name + '</span>' +
@@ -153,7 +124,7 @@ $(document).ready(function() {
                    '<p class="chatMessage">' + data.val().message + '</p>' +
                    '</div>');
                scrollToBottom();
-           }
+
        });
 
        socialDB.on('child_added', function(data) {
@@ -191,22 +162,17 @@ $(document).ready(function() {
     }
 
 
+    // Users Online
 
-    const shit = database.ref().child("/loggedin");
-    shit.on('child_added', function(data) {
-        $('ul#usersStatus').append('<li>' + data.val() + '</li>');
+    const onlineUsers = database.ref().child("loggedin/");
+    onlineUsers.on('child_added', function(data) {
+        $('ul#usersStatus').append('<li class="' + data.val() + '">' + data.val() + '</li>');
     });
 
-
-
-
-
-
-
-
-
-
-
+    onlineUsers.on('child_removed', function(data) {
+        $("." + data.val()).remove();
+        console.log(data.val());
+    });
 
 
 
