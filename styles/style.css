@@ -291,7 +291,7 @@ body {
     border: 1px solid #777;
 }
 
-#login-container button, #signup-container button {
+#login-container button, #signup-container button, #signup-container button {
     display: block;
     background: #5d8ffc;
     color: #ffffff;
