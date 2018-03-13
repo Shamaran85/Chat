@@ -129,13 +129,12 @@ $(document).ready(function() {
             '<p class="chatMessage">' + data.val().message + '</p>' +
             '</div>');
         scrollToBottom();
-
     });
 
     socialDB.on('child_added', function(data) {
         $socialChat.append('<div class="chatMsgContainer">' +
             '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
-            '<span class="uerName">' + data.val().name + '</span>' +
+            '<span class="userName">' + data.val().name + '</span>' +
             '<span class="timeStamp">' + data.val().timestamp + '</span>' +
             '<p class="chatMessage">' + data.val().message + '</p>' +
             '</div>');
@@ -145,20 +144,14 @@ $(document).ready(function() {
     workDB.on('child_added', function(data) {
         $workChat.append('<div class="chatMsgContainer">' +
             '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
-            '<span class="uerName">' + data.val().name + '</span>' +
+            '<span class="userName">' + data.val().name + '</span>' +
             '<span class="timeStamp">' + data.val().timestamp + '</span>' +
             '<p class="chatMessage">' + data.val().message + '</p>' +
             '</div>');
         scrollToBottom();
     });
 
-
-
-
-
-
-
-
+    
     // Scroll to bottom of page.
     function scrollToBottom() {
         $currentChatroomContent.scrollTop($currentChatroomContent[0].scrollHeight);
