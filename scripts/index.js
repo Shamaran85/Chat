@@ -29,7 +29,7 @@ $(document).ready(function() {
             // User is signed in.
             $chatContainer.show();
             showUserInfo();
-            database.ref('loggedin/').child(user.uid).set(user.displayName);
+            database.ref('loggedin/').child(user.uid).set({name: user.displayName, uid: user.uid});
         } else {
             // User is NOT signed in.
             $chatContainer.hide();
@@ -76,7 +76,7 @@ $(document).ready(function() {
     function sendMsg() {
         let user = auth.currentUser;
         let activeChatroom = $sendMsgButton.attr('class');
-        let chatLog = database.ref("chatroom/" + activeChatroom);
+        let chatLog = database.ref("chatroom/");
         let msgText = $chatMsg.val();
 
         if (msgText !== "") {
@@ -86,7 +86,8 @@ $(document).ready(function() {
                 uid: user.uid,
                 message: msgText,
                 timestamp: currentTimestamp,
-                photo: user.photoURL
+                photo: user.photoURL,
+                chatroom: activeChatroom
 
             });
             scrollToBottom();
@@ -111,41 +112,21 @@ $(document).ready(function() {
 
 
     // Read Chat to correct Room.
-       const generalDB = database.ref().child("chatroom/generalChat");
-       const socialDB = database.ref().child("chatroom/socialChat");
-       const workDB = database.ref().child("chatroom/workChat");
 
 
-       generalDB.on('child_added', function(data) {
-               $generalChat.append('<div class="chatMsgContainer">' +
-                   '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
-                   '<span class="userName">' + data.val().name + '</span>' +
-                   '<span class="timeStamp">' + data.val().timestamp + '</span>' +
-                   '<p class="chatMessage">' + data.val().message + '</p>' +
-                   '</div>');
-               scrollToBottom();
+    const chatMessages = database.ref().child("chatroom/");
+    chatMessages.on('child_added', function(data) {
 
-       });
+        let chatRoomMsg = $sendMsgButton.attr('class');
+        $("#" + chatRoomMsg).append('<div class="chatMsgContainer">' +
+            '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
+            '<span class="userName">' + data.val().name + '</span>' +
+            '<span class="timeStamp">' + data.val().timestamp + '</span>' +
+            '<p class="chatMessage">' + data.val().message + '</p>' +
+            '</div>');
+        scrollToBottom();
 
-       socialDB.on('child_added', function(data) {
-           $socialChat.append('<div class="chatMsgContainer">' +
-               '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
-               '<span class="uerName">' + data.val().name + '</span>' +
-               '<span class="timeStamp">' + data.val().timestamp + '</span>' +
-               '<p class="chatMessage">' + data.val().message + '</p>' +
-               '</div>');
-           scrollToBottom();
-       });
-
-       workDB.on('child_added', function(data) {
-           $workChat.append('<div class="chatMsgContainer">' +
-               '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
-               '<span class="uerName">' + data.val().name + '</span>' +
-               '<span class="timeStamp">' + data.val().timestamp + '</span>' +
-               '<p class="chatMessage">' + data.val().message + '</p>' +
-               '</div>');
-           scrollToBottom();
-       });
+    });
 
 
 
@@ -165,11 +146,11 @@ $(document).ready(function() {
 
     const onlineUsers = database.ref().child("loggedin/");
     onlineUsers.on('child_added', function(data) {
-        $('ul#usersStatus').append('<li class="' + data.val() + '">' + data.val() + '</li>');
+        $('ul#usersStatus').append('<li class="' + data.val().uid + '">' + data.val().name + '</li>');
     });
 
     onlineUsers.on('child_removed', function(data) {
-        $("." + data.val()).remove();
+        $("." + data.val().uid).remove();
     });
 
 
