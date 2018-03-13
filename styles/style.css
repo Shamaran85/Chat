@@ -329,12 +329,17 @@ body {
     padding: 0;
 }
 
+#settings-container #avatar-picker img {
+    width: 76px;
+    margin: 0;
+    padding: 0;
+}
+
 #avatar-picker li {
     display: inline-block;
     list-style-type: none;
     border: 2px solid transparent;
     border-radius: 7px;
-    //width: 76.8px;
     flex: 1;
     height: 75px;
     box-sizing: border-box;
