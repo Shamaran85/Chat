@@ -13,7 +13,6 @@ $(document).ready(function() {
     let $generalChat = $("#generalChat");
     let $socialChat = $("#socialChat");
     let $workChat = $("#workChat");
-    let $currentChatroomContent = $('.chatRoom-content.current');
     let $mainAvatar = $('#main-avatar');
     let $mainUserName = $('#main-username');
     let $chatRooms = $('ul#chatRooms li');
@@ -151,10 +150,10 @@ $(document).ready(function() {
         scrollToBottom();
     });
 
-    
+
     // Scroll to bottom of page.
     function scrollToBottom() {
-        $currentChatroomContent.scrollTop($currentChatroomContent[0].scrollHeight);
+        $('.chatRoom-content.current').scrollTop($('.chatRoom-content.current')[0].scrollHeight);
     }
 
     // Display User Photo and Name Top Left.
