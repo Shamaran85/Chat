@@ -3,7 +3,7 @@ $(document).ready(function() {
     // Get references to DOM elements
   //  let $avatarPicker = $('ul#avatar-picker li');
     //let $avatarPickerUrl = $('ul#avatar-picker li.active img');
-    let $settingsButton = $('#settingsUpdateProfile-button');
+    let $settingsButtonProfile = $('#settingsUpdateProfile-button');
     let $userName = $('#user-name');
     let db = firebase.database();
 
@@ -27,7 +27,7 @@ $(document).ready(function() {
 */
 
 
-    $settingsButton.click(function () {
+    $settingsButtonProfile.click(function () {
         let userName = $userName.val();
 
         // Update Profile.
