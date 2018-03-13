@@ -18,6 +18,7 @@ $(document).ready(function() {
     let $chatRooms = $('ul#chatRooms li');
     let $chatroomContent = $('.chatRoom-content');
     let $logoutButton = $('#logout-button');
+    let $settingsButton = $('#settings-button');
     let $chatContainer = $('#chat-container');
 
 
@@ -47,6 +48,12 @@ $(document).ready(function() {
         }).catch(function (error) {
             alert(error.message);
         });
+    });
+
+
+    // Goto Settings page.
+    $settingsButton.click(function () {
+            window.location = 'settings.html';
     });
 
 

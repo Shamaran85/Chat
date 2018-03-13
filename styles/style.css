@@ -34,9 +34,8 @@ body {
 .sidebar h2 {
     color: #eee;
     text-align: center;
-    border-bottom: 1px solid grey;
     padding: 15px;
-    margin: 0 0 50px 0;
+    margin: 0;
     font-size: 22px;
 }
 
@@ -53,6 +52,44 @@ body {
     width: 100px;
     height: auto;
 }
+
+
+.logout-settings {
+    margin: 0 0 50px 0 auto;
+    border-bottom: 1px solid grey;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.logout-settings button {
+    width: 70px;
+    margin: 5px;
+
+    background: #0576b9;
+    color: #ffffff;
+    border: 1px solid #0576b9;
+    border-radius: 5px;
+    padding: 5px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+}
+
+
+
+.logout-settings button:hover{
+    background: #fff;
+    color: #0576b9;
+    border: 1px solid #0576b9;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
 
 /* Chat Rooms in sidebar */
 
@@ -215,14 +252,6 @@ body {
     -moz-transition: 0.3s;
     margin-left: -50px;
     cursor: pointer;
-}
-
-
-#logOut {
-    border-top: 1px solid grey;
-    margin-top: 100px;
-    text-align: center;
-    padding-top: 15px;
 }
 
 
