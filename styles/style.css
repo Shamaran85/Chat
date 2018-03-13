@@ -262,6 +262,7 @@ body {
 /* Signup and Login Styles */
 
 #login-container, #signup-container {
+    box-sizing: border-box;
     width: 400px;
     height: 100%;
     margin: 0 auto;
@@ -278,7 +279,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
-    width: 368px;
+    width: 100%;
     padding: 15px;
     margin-bottom: 20px;
     transition: 0.3s;
@@ -296,11 +297,12 @@ body {
     color: #ffffff;
     border: 1px solid #5d8ffc;
     border-radius: 5px;
-    width: 370px;
+    width: 100%;
     padding: 15px;
     transition: 0.3s;
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
+    margin-bottom: 15px;
 }
 
 #login-container button:hover, #signup-container button:hover {
@@ -317,10 +319,12 @@ body {
 #avatar-picker {
     margin: 20px auto;
     padding: 0;
+    display: flex;
+    width: 100%;
 }
 
 #avatar-picker img {
-    width: 75px;
+    width: 70px;
     margin: 0;
     padding: 0;
 }
@@ -330,7 +334,8 @@ body {
     list-style-type: none;
     border: 2px solid transparent;
     border-radius: 7px;
-    width: 76.8px;
+    //width: 76.8px;
+    flex: 1;
     height: 75px;
     box-sizing: border-box;
     overflow: hidden;
@@ -340,6 +345,10 @@ body {
 #avatar-picker li.active {
     border: 2px solid #366de2;
 }
+
+
+
+
 
 /* Settings Styles */
 
