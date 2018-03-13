@@ -166,7 +166,12 @@ $(document).ready(function() {
     // Users Online
     const onlineUsers = database.ref().child("loggedin/");
     onlineUsers.on('child_added', function(data) {
-        $('ul#usersStatus').append('<li class="' + data.val().uid + '">' + data.val().name + '</li>');
+        let user = auth.currentUser;
+        if (data.val().uid === user.uid) {
+        $('ul#usersStatus').append('<li class="userNameSelf ' + data.val().uid + '">' + data.val().name + '</li>');
+        } else {
+            $('ul#usersStatus').append('<li class="' + data.val().uid + '">' + data.val().name + '</li>');
+        }
     });
 
     onlineUsers.on('child_removed', function(data) {
