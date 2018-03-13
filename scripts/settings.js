@@ -1,34 +1,23 @@
 $(document).ready(function() {
 
     // Get references to DOM elements
-  //  let $avatarPicker = $('ul#avatar-picker li');
+    let $avatarPicker = $('ul#avatar-picker li');
     //let $avatarPickerUrl = $('ul#avatar-picker li.active img');
     let $settingsButtonProfile = $('#settingsUpdateProfile-button');
     let $userName = $('#user-name');
     let db = firebase.database();
 
-
-/*
     // Set the chosen Avatar to active class.
     $avatarPicker.click(function () {
         $avatarPicker.removeClass('active');
         $(this).addClass('active');
     });
-*/
 
-    // Register new user.
-/*    $settingsButton.click(function () {
-
-        // Store Signup Details
-        let userName = $userName.val();
-        let userEmail = $userEmail.val();
-        let userPassword = $userPassword.val();
-      //  let userAvatar = $('ul#avatar-picker li.active img').attr('src');
-*/
 
 
     $settingsButtonProfile.click(function () {
         let userName = $userName.val();
+        let userAvatar = $('ul#avatar-picker li.active img').attr('src');
 
         // Update Profile.
         firebase.auth().onAuthStateChanged(function(user) {
@@ -36,7 +25,8 @@ $(document).ready(function() {
                  // User is signed in.
                  var user = firebase.auth().currentUser;
                   user.updateProfile({
-                      displayName: userName
+                      displayName: userName,
+                      photoURL: userAvatar
                     //  photoURL: userAvatar
                   }).then(function () {
                     location.reload();
