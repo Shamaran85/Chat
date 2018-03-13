@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    -->
+    <title>Chat</title>
+</head>
+<body>
+
+<div id="chat-container">
+    <div class="sidebar">
+        <div id="main-avatar"></div>
+        <h2 id="main-username"></h2>
+      
+
+        <h3>Rooms</h3>
+        <ul id="chatRooms">
+            <li class="chatRoom current" data-tab="generalChat">#General</li>
+            <li class="chatRoom" data-tab="socialChat">#Social</li>
+            <li class="chatRoom" data-tab="workChat">#Work</li>
+        </ul>
+        <h3>Users</h3>
+        <ul id="usersStatus">
+        </ul>
+        <div id="logOut">
+            <button id="logout-button">Logout</button>
+        </div>
+    </div>
+
+    <div class="main">
+        <div id="generalChat" class="chatRoom-content current">
+            <h2>General</h2>
+        </div>
+        <div id="socialChat" class="chatRoom-content">
+            <h2>Social</h2>
+        </div>
+        <div id="workChat" class="chatRoom-content">
+            <h2>Work</h2>
+        </div>
+        <div id="bottom">
+            <input type="text" id="chatMsg">
+            <button id="sendMsgButton" class="generalChat">Send</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+<script src="scripts/initialize.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="scripts/index.js"></script>
+</body>
+</html>
