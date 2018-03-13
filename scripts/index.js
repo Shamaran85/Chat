@@ -10,6 +10,9 @@ $(document).ready(function() {
     // Get references to DOM elements
     let $chatMsg = $("#chatMsg");
     let $sendMsgButton = $("#sendMsgButton");
+    let $generalChat = $("#generalChat");
+    let $socialChat = $("#socialChat");
+    let $workChat = $("#workChat");
     let $currentChatroomContent = $('.chatRoom-content.current');
     let $mainAvatar = $('#main-avatar');
     let $mainUserName = $('#main-username');
@@ -73,7 +76,7 @@ $(document).ready(function() {
     function sendMsg() {
         let user = auth.currentUser;
         let activeChatroom = $sendMsgButton.attr('class');
-        let chatLog = database.ref("chatroom/");
+        let chatLog = database.ref("chatroom/" + activeChatroom);
         let msgText = $chatMsg.val();
 
         if (msgText !== "") {
@@ -83,8 +86,7 @@ $(document).ready(function() {
                 uid: user.uid,
                 message: msgText,
                 timestamp: currentTimestamp,
-                photo: user.photoURL,
-                chatroom: activeChatroom
+                photo: user.photoURL
 
             });
             scrollToBottom();
@@ -108,19 +110,50 @@ $(document).ready(function() {
     });
 
 
-    // Read Chat to correct Room.
-    const chatMessages = database.ref().child("chatroom/");
-    chatMessages.on('child_added', function(data) {
 
-        let chatRoomMsg = $sendMsgButton.attr('class');
-        $("#" + chatRoomMsg).append('<div class="chatMsgContainer">' +
+
+
+    // Read Chat to correct Room.
+    const generalDB = database.ref().child("chatroom/generalChat");
+    const socialDB = database.ref().child("chatroom/socialChat");
+    const workDB = database.ref().child("chatroom/workChat");
+
+
+    generalDB.on('child_added', function(data) {
+        $generalChat.append('<div class="chatMsgContainer">' +
             '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
             '<span class="userName">' + data.val().name + '</span>' +
             '<span class="timeStamp">' + data.val().timestamp + '</span>' +
             '<p class="chatMessage">' + data.val().message + '</p>' +
             '</div>');
         scrollToBottom();
+
     });
+
+    socialDB.on('child_added', function(data) {
+        $socialChat.append('<div class="chatMsgContainer">' +
+            '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
+            '<span class="uerName">' + data.val().name + '</span>' +
+            '<span class="timeStamp">' + data.val().timestamp + '</span>' +
+            '<p class="chatMessage">' + data.val().message + '</p>' +
+            '</div>');
+        scrollToBottom();
+    });
+
+    workDB.on('child_added', function(data) {
+        $workChat.append('<div class="chatMsgContainer">' +
+            '<div class="userImage"><img class="userImage" src="' + data.val().photo + '"></div>' +
+            '<span class="uerName">' + data.val().name + '</span>' +
+            '<span class="timeStamp">' + data.val().timestamp + '</span>' +
+            '<p class="chatMessage">' + data.val().message + '</p>' +
+            '</div>');
+        scrollToBottom();
+    });
+
+
+
+
+
 
 
 
