@@ -10,9 +10,6 @@ $(document).ready(function() {
     // Get references to DOM elements
     let $chatMsg = $("#chatMsg");
     let $sendMsgButton = $("#sendMsgButton");
-    let $generalChat = $("#generalChat");
-    let $socialChat = $("#socialChat");
-    let $workChat = $("#workChat");
     let $currentChatroomContent = $('.chatRoom-content.current');
     let $mainAvatar = $('#main-avatar');
     let $mainUserName = $('#main-username');
@@ -112,8 +109,6 @@ $(document).ready(function() {
 
 
     // Read Chat to correct Room.
-
-
     const chatMessages = database.ref().child("chatroom/");
     chatMessages.on('child_added', function(data) {
 
@@ -125,7 +120,6 @@ $(document).ready(function() {
             '<p class="chatMessage">' + data.val().message + '</p>' +
             '</div>');
         scrollToBottom();
-
     });
 
 
@@ -143,7 +137,6 @@ $(document).ready(function() {
     }
 
     // Users Online
-
     const onlineUsers = database.ref().child("loggedin/");
     onlineUsers.on('child_added', function(data) {
         $('ul#usersStatus').append('<li class="' + data.val().uid + '">' + data.val().name + '</li>');
