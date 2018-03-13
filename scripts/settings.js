@@ -3,7 +3,7 @@ $(document).ready(function() {
     // Get references to DOM elements
   //  let $avatarPicker = $('ul#avatar-picker li');
     //let $avatarPickerUrl = $('ul#avatar-picker li.active img');
-    let $settingsButton = $('#settings-button');
+    let $settingsButton = $('#settingsUpdateProfile-button');
     let $userName = $('#user-name');
     let db = firebase.database();
 
