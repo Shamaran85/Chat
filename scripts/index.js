@@ -30,6 +30,8 @@ $(document).ready(function() {
             $chatContainer.show();
             showUserInfo();
             database.ref('loggedin/').child(user.uid).set({name: user.displayName, uid: user.uid});
+            database.ref('loggedin/').child(user.uid).onDisconnect().remove();
+
         } else {
             // User is NOT signed in.
             $chatContainer.hide();
