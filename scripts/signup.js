@@ -23,6 +23,10 @@ $(document).ready(function() {
         let userPassword = $userPassword.val();
         let userAvatar = $('ul#avatar-picker li.active img').attr('src');
 
+        if (userName === "") {
+            alert("Must enter a username.");
+        } else {
+            
         // Signup.
         firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).catch(function(error) {
             alert(error.message);
@@ -40,5 +44,6 @@ $(document).ready(function() {
                   });
             }
         });
+        }
     });
 });
