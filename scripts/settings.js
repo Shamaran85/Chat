@@ -27,10 +27,6 @@ $(document).ready(function() {
                   user.updateProfile({
                       displayName: userName,
                       photoURL: userAvatar
-                      $userName.val(''); // Empty Username Input Field.
-                    } else {
-                        alert("The Username can not be emty.")
-                    }
                     //  photoURL: userAvatar
                   }).then(function () {
                     location.reload();
