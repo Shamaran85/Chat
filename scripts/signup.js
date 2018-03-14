@@ -24,7 +24,7 @@ $(document).ready(function() {
         let userAvatar = $('ul#avatar-picker li.active img').attr('src');
 
         if (userName === "" || userName.length > 10) {
-            alert("Must enter a username. And have less than 10 characters");
+            alert("Must enter a username. And have 10 or less characters");
         } else {
 
         // Signup.
