@@ -29,7 +29,7 @@ $(document).ready(function() {
                       photoURL: userAvatar
                   }).then(function () {
                     window.location.href = "index.html";
-                  });
+                  })
                 } else {
                     user.updateProfile({
                         photoURL: userAvatar
