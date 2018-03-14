@@ -28,7 +28,11 @@ $(document).ready(function() {
                       displayName: userName,
                       photoURL: userAvatar
                     //  photoURL: userAvatar
-                  }).then(function () {
+                  })
+                  $userName.val(''); // Empty Username Input Field.
+                } else {
+                    alert("The Username can not be emty.")
+                }.then(function () {
                     location.reload();
                       //window.location.href = "index.html";
                       //console.log(user);
