@@ -26,7 +26,7 @@ $(document).ready(function() {
         if (userName === "") {
             alert("Must enter a username.");
         } else {
-            
+
         // Signup.
         firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).catch(function(error) {
             alert(error.message);

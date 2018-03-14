@@ -29,6 +29,7 @@ $(document).ready(function() {
             // User is signed in.
             $chatContainer.show();
             showUserInfo();
+            $("#chatMsg").focus();
             database.ref('loggedin/').child(user.uid).set({name: user.displayName, uid: user.uid});
             database.ref('loggedin/').child(user.uid).onDisconnect().remove();
 
@@ -74,6 +75,10 @@ $(document).ready(function() {
         // Change the Send message class for writing to database.
         $sendMsgButton.removeClass();
         $sendMsgButton.addClass(tab_id);
+
+        // Focus message input field.
+        $("#chatMsg").focus();
+        $chatMsg.val(''); // Empty Message Input Field.
 
         // Scroll to bottom of Chat.
         scrollToBottom();
