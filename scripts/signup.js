@@ -2,7 +2,6 @@ $(document).ready(function() {
 
     // Get references to DOM elements
     let $avatarPicker = $('ul#avatar-picker li');
-    //let $avatarPickerUrl = $('ul#avatar-picker li.active img');
     let $signupButton = $('#signup-button');
     let $userName = $('#user-name');
     let $userEmail = $('#user-email');

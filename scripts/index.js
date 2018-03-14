@@ -117,10 +117,6 @@ $(document).ready(function() {
         }
     });
 
-
-
-
-
     // Read Chat to correct Room.
     const generalDB = database.ref().child("chatroom/generalChat");
     const socialDB = database.ref().child("chatroom/socialChat");
