@@ -23,8 +23,8 @@ $(document).ready(function() {
         let userPassword = $userPassword.val();
         let userAvatar = $('ul#avatar-picker li.active img').attr('src');
 
-        if (userName === "") {
-            alert("Must enter a username.");
+        if (userName === "" || userName.length > 10) {
+            alert("Must enter a username. And have less than 10 characters");
         } else {
 
         // Signup.
